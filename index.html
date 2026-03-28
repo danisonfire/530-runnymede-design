@@ -119,14 +119,23 @@
   }
   .palette-card {
     text-align: center;
+    background: white;
+    border-radius: 14px;
+    padding: 1.2rem 1rem 1rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .palette-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
   }
   .palette-swatch {
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 12px;
+    border-radius: 10px;
     margin-bottom: 0.8rem;
     border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
   .palette-card .name {
     font-weight: 500;
