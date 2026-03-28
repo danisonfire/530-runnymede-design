@@ -109,7 +109,7 @@
 
   /* FULL PALETTE SECTION */
   .full-palette {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto 5rem;
     padding: 0 2rem;
   }
@@ -146,6 +146,14 @@
   .palette-card .code {
     font-size: 0.75rem;
     color: var(--text-light);
+  }
+  .palette-card .rooms {
+    font-size: 0.68rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    padding-top: 0.5rem;
   }
 
   /* ROOM SECTION */
@@ -301,77 +309,117 @@
 
 <!-- PALETTE BAR -->
 <div class="palette-bar">
+  <div style="background: var(--horizon)"></div>
   <div style="background: var(--white-dove)"></div>
   <div style="background: var(--backwoods)"></div>
   <div style="background: var(--hale-navy)"></div>
-  <div style="background: var(--october-mist)"></div>
   <div style="background: var(--van-courtland)"></div>
   <div style="background: var(--burgundy)"></div>
   <div style="background: var(--peach)"></div>
+  <div style="background: var(--brass)"></div>
 </div>
 
 <!-- INTRO -->
 <section class="intro">
   <h2>Color Specification &amp; Design Guide</h2>
   <p>
-    Seven unique Benjamin Moore paint colors transform 530 Runnymede from a bright 2018 renovation
-    into a home with depth, personality, and soul. Every bold room is balanced by calm White Dove
-    hallways and trim — the thread that ties it all together and prevents the boldness from becoming chaos.
+    Seven Benjamin Moore paint colors, two statement wallpapers, and brass hardware throughout
+    transform 530 Runnymede from a bright 2018 renovation into a home with depth, personality,
+    and soul. Every bold room is balanced by calm White Dove hallways and trim — the thread that
+    ties it all together and prevents the boldness from becoming chaos.
   </p>
 </section>
 
 <!-- FULL PALETTE -->
 <section class="full-palette">
   <div class="palette-grid">
+
+    <div class="palette-card">
+      <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/oc-53/horizon" target="_blank" style="text-decoration:none;color:inherit;">
+      <div class="palette-swatch" style="background: var(--horizon)"></div>
+      <div class="name">Horizon</div>
+      <div class="code">OC-53 · Existing</div>
+      </a>
+      <div class="rooms">Living Room · Kitchen</div>
+    </div>
+
     <div class="palette-card">
       <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/oc-17/white-dove" target="_blank" style="text-decoration:none;color:inherit;">
       <div class="palette-swatch" style="background: var(--white-dove)"></div>
       <div class="name">White Dove</div>
       <div class="code">OC-17</div>
       </a>
+      <div class="rooms">All Trim · Staircase · Second Bedroom Walls · Third Bedroom Walls</div>
     </div>
+
     <div class="palette-card">
       <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/469/backwoods" target="_blank" style="text-decoration:none;color:inherit;">
       <div class="palette-swatch" style="background: var(--backwoods)"></div>
       <div class="name">Backwoods</div>
       <div class="code">469</div>
       </a>
+      <div class="rooms">Master Bedroom Walls</div>
     </div>
+
     <div class="palette-card">
       <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/hc-154/hale-navy" target="_blank" style="text-decoration:none;color:inherit;">
       <div class="palette-swatch" style="background: var(--hale-navy)"></div>
       <div class="name">Hale Navy</div>
       <div class="code">HC-154</div>
       </a>
+      <div class="rooms">Kitchen Lower Cabinets · Laundry Room Wainscot · Basement Walls &amp; Ceiling</div>
     </div>
-    <div class="palette-card">
-      <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/1495/october-mist" target="_blank" style="text-decoration:none;color:inherit;">
-      <div class="palette-swatch" style="background: var(--october-mist)"></div>
-      <div class="name">October Mist</div>
-      <div class="code">1495</div>
-      </a>
-    </div>
+
     <div class="palette-card">
       <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/hc-145/van-courtland-blue" target="_blank" style="text-decoration:none;color:inherit;">
       <div class="palette-swatch" style="background: var(--van-courtland)"></div>
       <div class="name">Van Courtland Blue</div>
       <div class="code">HC-145</div>
       </a>
+      <div class="rooms">Back Mudroom Walls · Second Bedroom Ceiling</div>
     </div>
+
     <div class="palette-card">
       <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/hc-182/classic-burgundy" target="_blank" style="text-decoration:none;color:inherit;">
       <div class="palette-swatch" style="background: var(--burgundy)"></div>
       <div class="name">Classic Burgundy</div>
       <div class="code">HC-182</div>
       </a>
+      <div class="rooms">Second Bedroom Accent Door</div>
     </div>
+
     <div class="palette-card">
       <a href="https://www.benjaminmoore.com/en-us/paint-colors/color/2175-70/peach-parfait" target="_blank" style="text-decoration:none;color:inherit;">
       <div class="palette-swatch" style="background: var(--peach)"></div>
       <div class="name">Peach Parfait</div>
       <div class="code">2175-70</div>
       </a>
+      <div class="rooms">Third Bedroom Ceiling</div>
     </div>
+
+    <div class="palette-card">
+      <a href="https://riflepaperco.com/products/safari-peel-stick-wallpaper-cream" target="_blank" style="text-decoration:none;color:inherit;">
+      <div class="palette-swatch" style="background: url('images/powder-room-wall.png') center/cover; border: 1px solid rgba(0,0,0,0.06);"></div>
+      <div class="name">Safari Wallpaper</div>
+      <div class="code">Rifle Paper Co. · Cream</div>
+      </a>
+      <div class="rooms">Powder Room Walls</div>
+    </div>
+
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: #C8B99A"></div>
+      <div class="name">Grasscloth Wallpaper</div>
+      <div class="code">Warm natural linen tone</div>
+      <div class="rooms">Laundry Room Upper Walls</div>
+    </div>
+
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: linear-gradient(135deg, #D4A84B, #B8963E, #8C6D2E); border: 1px solid rgba(0,0,0,0.06);"></div>
+      <div class="name">Brass Hardware</div>
+      <div class="code">Unlacquered · Satin finish</div>
+      <div class="rooms">Kitchen · Staircase · Powder Room · Master Bedroom</div>
+    </div>
+
   </div>
 </section>
 
@@ -584,7 +632,7 @@
         </div>
         <a href="https://riflepaperco.com/products/safari-peel-stick-wallpaper-cream" target="_blank" style="text-decoration:none;color:inherit;">
         <div class="color-chip">
-          <div class="chip-swatch" style="background: url('https://riflepaperco.com/cdn/shop/files/WAS113-01_1024x1024.jpg?v=1757347517') center/cover; border: 1px solid #ddd"></div>
+          <div class="chip-swatch" style="background: url('images/powder-room-wall.png') center/cover; border: 1px solid #ddd"></div>
           <div class="chip-info">
             <div class="chip-surface">Remaining Walls</div>
             <div class="chip-name">Rifle Paper Co. Safari · Cream</div>
@@ -874,13 +922,14 @@
 
 <!-- FOOTER -->
 <div class="palette-bar" style="margin-top: 4rem;">
+  <div style="background: var(--horizon)"></div>
   <div style="background: var(--white-dove)"></div>
   <div style="background: var(--backwoods)"></div>
   <div style="background: var(--hale-navy)"></div>
-  <div style="background: var(--october-mist)"></div>
   <div style="background: var(--van-courtland)"></div>
   <div style="background: var(--burgundy)"></div>
   <div style="background: var(--peach)"></div>
+  <div style="background: var(--brass)"></div>
 </div>
 <footer>
   <h3>530 Runnymede</h3>
