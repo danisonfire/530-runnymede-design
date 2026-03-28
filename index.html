@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>530 Runnymede — Color Specification & Design Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --white-dove: #F3ECD7;
+    --backwoods: #3E4A3C;
+    --hale-navy: #3D4F5F;
+    --van-courtland: #8BA2A8;
+    --burgundy: #5C2631;
+    --october-mist: #B5BFA4;
+    --peach: #F0C4A8;
+    --brass: #B8963E;
+    --bg: #FAFAF7;
+    --text: #2C2C2C;
+    --text-light: #6B6B6B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_8124.jpg') center/cover;
+    filter: brightness(0.45);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 700px;
+    padding: 0 2rem;
+  }
+  .hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-content .subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+  }
+  .hero-content .style-tag {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 0.6rem 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* PALETTE BAR */
+  .palette-bar {
+    display: flex;
+    height: 8px;
+  }
+  .palette-bar div { flex: 1; }
+
+  /* INTRO */
+  .intro {
+    max-width: 720px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  .intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+  .intro p {
+    color: var(--text-light);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  /* FULL PALETTE SECTION */
+  .full-palette {
+    max-width: 900px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+  }
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1.2rem;
+  }
+  .palette-card {
+    text-align: center;
+  }
+  .palette-swatch {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .palette-card .name {
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+  }
+  .palette-card .code {
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  /* ROOM SECTION */
+  .room {
+    margin-bottom: 6rem;
+  }
+  .room-header {
+    max-width: 1100px;
+    margin: 0 auto 2.5rem;
+    padding: 0 2rem;
+  }
+  .room-header .room-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+  .room-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+  .room-header .room-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 1.1rem;
+  }
+
+  .room-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .room-content { grid-template-columns: 1fr; }
+  }
+
+  .room-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .room-photos img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .room-spec {
+    position: sticky;
+    top: 2rem;
+  }
+
+  /* COLOR CHIPS */
+  .color-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .color-chip {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+  }
+  .chip-swatch {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .chip-info .chip-surface {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-light);
+  }
+  .chip-info .chip-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .chip-info .chip-code {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  .designer-note {
+    background: linear-gradient(135deg, #f8f6f0, #f2efe6);
+    border-left: 3px solid var(--brass);
+    border-radius: 0 8px 8px 0;
+    padding: 1.2rem 1.5rem;
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+  .designer-note strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 100px;
+    margin: 4rem auto;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--backwoods);
+    color: rgba(255,255,255,0.7);
+  }
+  footer h3 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  footer p {
+    font-size: 0.85rem;
+    font-weight: 300;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>530 Runnymede</h1>
+    <p class="subtitle">Toronto, Ontario</p>
+    <span class="style-tag">Moody Heritage Modern</span>
+  </div>
+</section>
+
+<!-- PALETTE BAR -->
+<div class="palette-bar">
+  <div style="background: var(--white-dove)"></div>
+  <div style="background: var(--backwoods)"></div>
+  <div style="background: var(--hale-navy)"></div>
+  <div style="background: var(--october-mist)"></div>
+  <div style="background: var(--van-courtland)"></div>
+  <div style="background: var(--burgundy)"></div>
+  <div style="background: var(--peach)"></div>
+</div>
+
+<!-- INTRO -->
+<section class="intro">
+  <h2>Color Specification &amp; Design Guide</h2>
+  <p>
+    Six unique Benjamin Moore paint colors transform 530 Runnymede from a bright 2018 renovation
+    into a home with depth, personality, and soul. Every bold room is balanced by calm White Dove
+    hallways and trim — the thread that ties it all together and prevents the boldness from becoming chaos.
+  </p>
+</section>
+
+<!-- FULL PALETTE -->
+<section class="full-palette">
+  <div class="palette-grid">
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: var(--white-dove)"></div>
+      <div class="name">White Dove</div>
+      <div class="code">OC-17</div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: var(--backwoods)"></div>
+      <div class="name">Backwoods</div>
+      <div class="code">469</div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: var(--hale-navy)"></div>
+      <div class="name">Hale Navy</div>
+      <div class="code">HC-154</div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: var(--october-mist)"></div>
+      <div class="name">October Mist</div>
+      <div class="code">1495</div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: var(--van-courtland)"></div>
+      <div class="name">Van Courtland Blue</div>
+      <div class="code">HC-145</div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: var(--burgundy)"></div>
+      <div class="name">Classic Burgundy</div>
+      <div class="code">HC-182</div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background: var(--peach)"></div>
+      <div class="name">Peach Parfait</div>
+      <div class="code">Ceiling accent</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== LIVING ROOM ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Main Floor</p>
+    <h2>Living Room</h2>
+    <p class="room-tagline">The calm, bright exhale of the home</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_6293.jpg" alt="Living room with stone fireplace">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_370.jpg" alt="Living room with wood slats">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: #FFFFFF; border: 1px solid #ddd"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Walls</div>
+            <div class="chip-name">Existing White</div>
+            <div class="chip-code">Keep as-is</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: #FFFFFF; border: 1px solid #ddd"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Ceiling</div>
+            <div class="chip-name">Existing White</div>
+            <div class="chip-code">Keep as-is</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">All Trim &amp; Baseboards</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Semi-Gloss</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> The living room stays intentionally white — it's the breathing room.
+        Personality comes through furniture, textiles, art, and that staircase gallery wall.
+        The white lets the moody rooms around it feel even more dramatic by contrast.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== KITCHEN & DINING ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Main Floor</p>
+    <h2>Kitchen &amp; Dining</h2>
+    <p class="room-tagline">White kitchen stays — transform through lighting, hardware &amp; art</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_9581.jpg" alt="Kitchen and dining area">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_7524.jpg" alt="Kitchen coffee nook with shelves">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: #FFFFFF; border: 1px solid #ddd"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Walls &amp; Upper Cabinets</div>
+            <div class="chip-name">Existing White</div>
+            <div class="chip-code">Keep as-is</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--hale-navy)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Lower Cabinets (Future)</div>
+            <div class="chip-name">Hale Navy</div>
+            <div class="chip-code">HC-154 · Semi-Gloss</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--brass)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Hardware</div>
+            <div class="chip-name">Brass Pulls</div>
+            <div class="chip-code">Unlacquered · Satin</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> Painting the lower cabinets Hale Navy while keeping uppers white
+        creates a grounded, two-tone kitchen that feels intentional and connected to the basement palette below.
+        Brass hardware warms the whole thing up.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== STAIRCASE & GALLERY WALL ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Main Floor</p>
+    <h2>Staircase &amp; Gallery Wall</h2>
+    <p class="room-tagline">The spine of the home — where character lives</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_4845.jpg" alt="Staircase from dining room">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_6104.jpg" alt="Staircase wall">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Walls &amp; Hallways</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Eggshell</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--brass)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Hardware Throughout</div>
+            <div class="chip-name">Brass / Unlacquered Bronze</div>
+            <div class="chip-code">Satin finish</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> This long staircase wall is prime gallery wall territory —
+        mixed vintage frames, botanical prints, and personal art layered along the full run. The
+        existing wood-and-iron railing already has the heritage character to support it. Consider a natural
+        jute stair runner with a bold stripe for added personality.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== BACK MUDROOM ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Main Floor</p>
+    <h2>Back Mudroom</h2>
+    <p class="room-tagline">Painted stripe accent wall in light sage</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_7317.jpg" alt="Entry area with bench">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_834.jpg" alt="Entry windows and seating">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--october-mist)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Stripe Color</div>
+            <div class="chip-name">October Mist</div>
+            <div class="chip-code">1495 · Eggshell</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Base / Alternating</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Eggshell</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> Stripe width recommendation: 4–6 inches for a modern feel. Use
+        painter's tape and a laser level. October Mist is soft enough to feel sophisticated, not crafty —
+        and it bridges the greens upstairs with the whites of the main floor.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== POWDER ROOM ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Main Floor</p>
+    <h2>Powder Room &amp; Main Bathroom</h2>
+    <p class="room-tagline">Small rooms, big personality — statement wallpaper moments</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_7461.jpg" alt="Powder room">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_4310.jpg" alt="Main bathroom">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--hale-navy)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Vanity Wall / Wainscoting</div>
+            <div class="chip-name">Hale Navy or Bold Wallpaper</div>
+            <div class="chip-code">HC-154 · Semi-Gloss</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--brass)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Fixtures &amp; Hardware</div>
+            <div class="chip-name">Brass / Unlacquered Bronze</div>
+            <div class="chip-code">Swap black for brass</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> These are your opportunity rooms. The current bathrooms are clean but plain —
+        perfect for a bold wallpaper (dark botanical, fish toile, or the playful lobster print from your Pinterest).
+        Small rooms are where you can take the biggest risks for the least cost.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== MASTER BEDROOM ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Second Floor</p>
+    <h2>Master Bedroom</h2>
+    <p class="room-tagline">Crown jewel — deep forest green, dark wood, the standout room</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_2963.jpg" alt="Master bedroom with bay window">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--backwoods)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Walls</div>
+            <div class="chip-name">Backwoods</div>
+            <div class="chip-code">469 · Eggshell</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Ceiling &amp; Trim</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Flat / Semi-Gloss</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--brass)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Hardware &amp; Lighting</div>
+            <div class="chip-name">Brass / Unlacquered Bronze</div>
+            <div class="chip-code">Warm metal throughout</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> Backwoods is the showstopper. Paired with mid-century walnut furniture,
+        neutral linen bedding, and warm brass lighting, the stained glass in the bay window will
+        cast amber light against the deep green — absolutely stunning at golden hour. Keep bedding
+        simple — white linen with maybe one earthy accent.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== SECOND BEDROOM ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Second Floor</p>
+    <h2>Second Bedroom</h2>
+    <p class="room-tagline">Van Courtland Blue ceiling, Classic Burgundy accent door</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_994.jpg" alt="Second bedroom">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Walls</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Eggshell</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--van-courtland)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Ceiling</div>
+            <div class="chip-name">Van Courtland Blue</div>
+            <div class="chip-code">HC-145 · Flat</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--burgundy)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Accent Door</div>
+            <div class="chip-name">Classic Burgundy</div>
+            <div class="chip-code">HC-182 · Semi-Gloss</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> All three colors are from Benjamin Moore's Historic Collection —
+        literally formulated to sit together in heritage homes. The key: paint the door LAST, after the
+        ceiling is done. Hold your ceiling color sample up to the wall before committing.
+        The burgundy door is a deep wine, not fire engine — it feels like a European parlor detail.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== THIRD BEDROOM ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Second Floor</p>
+    <h2>Third Bedroom</h2>
+    <p class="room-tagline">Warm glow — peach ceiling, white walls</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_2817.jpg" alt="Third bedroom">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_1417.jpg" alt="Third bedroom alternate view">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Walls</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Eggshell</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--peach)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Ceiling</div>
+            <div class="chip-name">Peach Parfait</div>
+            <div class="chip-code">Warm peach · Flat</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Trim &amp; Rail</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Semi-Gloss</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> A peach ceiling bathes the room in a warm, flattering glow —
+        especially lovely in the morning light. It's playful enough for a kid's room but sophisticated
+        enough to grow with them. Pairs beautifully with the Peach Fuzz palette trend you've been pinning.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== BASEMENT ===== -->
+<section class="room">
+  <div class="room-header">
+    <p class="room-label">Lower Level</p>
+    <h2>Basement Lounge &amp; Bar</h2>
+    <p class="room-tagline">Dark, cinematic, immersive — walls AND ceiling painted</p>
+  </div>
+  <div class="room-content">
+    <div class="room-photos">
+      <img src="https://www.youronlineagents.com/listingphotos/17324/original_1924859_image_8870.jpg" alt="Basement lounge">
+    </div>
+    <div class="room-spec">
+      <div class="color-chips">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--hale-navy)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Walls</div>
+            <div class="chip-name">Hale Navy</div>
+            <div class="chip-code">HC-154 · Eggshell</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--hale-navy)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Ceiling</div>
+            <div class="chip-name">Hale Navy</div>
+            <div class="chip-code">HC-154 · Flat</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--hale-navy)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Barn Door &amp; Bar Nook</div>
+            <div class="chip-name">Hale Navy</div>
+            <div class="chip-code">HC-154 · Eggshell</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background: var(--white-dove)"></div>
+          <div class="chip-info">
+            <div class="chip-surface">Trim</div>
+            <div class="chip-name">White Dove</div>
+            <div class="chip-code">OC-17 · Semi-Gloss</div>
+          </div>
+        </div>
+      </div>
+      <div class="designer-note">
+        <strong>Designer Note:</strong> Painting the ceiling the same Hale Navy as the walls is the move —
+        the slight sheen difference (flat ceiling vs. eggshell walls) gives dimension while creating the
+        cocoon effect. The bar nook: walnut floating shelves, brass rail or bar cart, with warm-toned
+        pendant lighting to create a speakeasy glow.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="palette-bar" style="margin-top: 4rem;">
+  <div style="background: var(--white-dove)"></div>
+  <div style="background: var(--backwoods)"></div>
+  <div style="background: var(--hale-navy)"></div>
+  <div style="background: var(--october-mist)"></div>
+  <div style="background: var(--van-courtland)"></div>
+  <div style="background: var(--burgundy)"></div>
+  <div style="background: var(--peach)"></div>
+</div>
+<footer>
+  <h3>530 Runnymede</h3>
+  <p>Moody Heritage Modern &middot; Color Specification &amp; Design Guide</p>
+  <p style="margin-top: 0.5rem; opacity: 0.5; font-size: 0.75rem;">Sample every color on the actual wall &middot; 2ft &times; 2ft patches &middot; Live with them for 48 hours in daylight</p>
+</footer>
+
+</body>
+</html>
