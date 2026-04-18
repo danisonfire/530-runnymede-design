@@ -10,7 +10,7 @@
    ========================================================================= */
 
 (function () {
-  const STORAGE_KEY = 'runnymede-edits-v1';
+  const STORAGE_KEY = 'runnymede-edits-v2';
   const CUSTOM_COLORS_KEY = 'runnymede-custom-colors-v1';
 
   // Merge any user-added custom colors into the global library
