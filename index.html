@@ -206,6 +206,7 @@
   .room-photos img {
     width: 100%;
     border-radius: 8px;
+  }
     display: block;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   }
@@ -293,9 +294,586 @@
     font-size: 0.85rem;
     font-weight: 300;
   }
+
+  /* ============== EDITOR UI ============== */
+  #editor-toolbar {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 60;
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 999px;
+    padding: 0.35rem;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    font-family: 'Inter', sans-serif;
+  }
+  #editor-toolbar button {
+    border: none;
+    background: transparent;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  #editor-toolbar button:hover { background: rgba(0,0,0,0.05); }
+  #editor-toolbar #btn-edit.on {
+    background: var(--backwoods);
+    color: white;
+  }
+  #editor-toolbar .tool-sep {
+    width: 1px;
+    background: rgba(0,0,0,0.1);
+    margin: 0.3rem 0;
+  }
+
+  /* chip edit-mode visuals */
+  .edit-only { display: none; }
+  body.edit-mode .edit-only { display: flex; }
+
+  .color-chip { position: relative; }
+  body.edit-mode .color-chip:hover {
+    outline: 2px solid var(--backwoods);
+    outline-offset: 2px;
+  }
+  .chip-actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    gap: 0.25rem;
+  }
+  .chip-act {
+    border: 1px solid rgba(0,0,0,0.15);
+    background: white;
+    font: inherit;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text);
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .chip-act:hover { background: var(--backwoods); color: white; border-color: var(--backwoods); }
+  .chip-act-del { padding: 0.2rem 0.5rem; font-size: 0.9rem; line-height: 0.8; }
+
+  body.edit-mode .chip-surface {
+    cursor: text;
+    border-bottom: 1px dashed rgba(0,0,0,0.2);
+    display: inline-block;
+    padding-bottom: 1px;
+  }
+  .inline-edit-input {
+    font: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--backwoods);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    width: 12rem;
+    max-width: 100%;
+  }
+
+  .add-chip-btn {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1.5px dashed rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 0.85rem 1.2rem;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    margin-bottom: 1.5rem;
+  }
+  body.edit-mode .add-chip-btn { display: flex; }
+  .add-chip-btn:hover {
+    border-color: var(--backwoods);
+    color: var(--backwoods);
+    background: rgba(62,74,60,0.04);
+  }
+  .add-chip-btn span {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  /* designer note editing */
+  body.edit-mode .designer-note { cursor: text; }
+  body.edit-mode .designer-note:hover { outline: 1px dashed rgba(0,0,0,0.2); outline-offset: 2px; }
+  .designer-note.editing { cursor: default; outline: none; }
+  .note-editor {
+    width: 100%;
+    min-height: 120px;
+    font: inherit;
+    font-size: 0.88rem;
+    color: var(--text);
+    background: white;
+    border: 1px solid var(--backwoods);
+    border-radius: 6px;
+    padding: 0.7rem;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  .note-editor-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+  }
+  .note-hint {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    letter-spacing: 0.02em;
+  }
+  .note-editor-controls button {
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: white;
+    color: var(--text);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-left: 0.3rem;
+  }
+  .note-editor-controls .note-save {
+    background: var(--backwoods);
+    color: white;
+    border-color: var(--backwoods);
+  }
+
+  /* room mood strip */
+  .room-mood {
+    display: flex;
+    height: 14px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .mood-seg { flex: 1; }
+
+  /* ============== PICKER MODAL ============== */
+  #bm-picker {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,20,20,0.55);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3rem 1rem;
+    overflow-y: auto;
+  }
+  #bm-picker.open { display: flex; }
+
+  .bm-picker-dialog {
+    background: var(--bg);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+  }
+  .bm-picker-head {
+    padding: 1.3rem 1.5rem 0.9rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    background: white;
+  }
+  .bm-picker-head-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .bm-picker-head h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+  }
+  .bm-picker-head .bm-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
+  }
+  #bm-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+  }
+  #bm-search {
+    width: 100%;
+    font: inherit;
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    background: var(--bg);
+  }
+  #bm-search:focus {
+    outline: none;
+    border-color: var(--backwoods);
+  }
+  #bm-families {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+  .fam-pill {
+    border: 1px solid rgba(0,0,0,0.12);
+    background: white;
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text);
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .fam-pill:hover { border-color: var(--text); }
+  .fam-pill.active {
+    background: var(--backwoods);
+    color: white;
+    border-color: var(--backwoods);
+  }
+  #bm-count {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.7rem;
+  }
+  #bm-add-url {
+    margin-top: 0.8rem;
+    border: 1px dashed rgba(0,0,0,0.15);
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+  }
+  #bm-add-url summary {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--backwoods);
+    cursor: pointer;
+    list-style: none;
+    padding: 0.1rem 0;
+  }
+  #bm-add-url summary::-webkit-details-marker { display: none; }
+  #bm-add-url[open] summary { margin-bottom: 0.7rem; }
+  .bm-add-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .bm-add-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+  }
+  .bm-add-row > span:first-child {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .bm-add-row input[type="url"],
+  .bm-add-row input[type="text"],
+  .bm-add-row select {
+    font: inherit;
+    font-size: 0.82rem;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 6px;
+    background: white;
+    width: 100%;
+  }
+  .bm-hex-pair {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .bm-hex-pair input[type="color"] {
+    width: 40px;
+    height: 32px;
+    padding: 2px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+  }
+  .bm-hex-pair input[type="text"] {
+    width: 100px;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+  }
+  .bm-hex-source {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.06);
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .bm-hex-source.sampled {
+    background: rgba(40,120,80,0.12);
+    color: rgb(30,90,60);
+  }
+  .bm-drop {
+    border: 1.5px dashed rgba(0,0,0,0.22);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.02);
+    padding: 0.8rem;
+    cursor: pointer;
+    transition: background 120ms, border-color 120ms;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bm-drop:hover,
+  .bm-drop:focus { border-color: rgba(0,0,0,0.4); background: rgba(0,0,0,0.04); outline: none; }
+  .bm-drop.dragover { border-color: rgb(30,90,60); background: rgba(40,120,80,0.08); }
+  .bm-drop-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+  .bm-drop-empty strong { color: var(--text); font-weight: 600; font-size: 0.85rem; }
+  .bm-drop-empty small { font-size: 0.72rem; opacity: 0.75; margin-top: 0.3rem; }
+  .bm-drop-empty button {
+    border: none;
+    background: none;
+    color: rgb(30,90,60);
+    text-decoration: underline;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+  }
+  .bm-drop-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+  }
+  .bm-drop-preview canvas {
+    max-width: 100%;
+    max-height: 260px;
+    border-radius: 4px;
+    cursor: crosshair;
+    display: block;
+    image-rendering: auto;
+  }
+  .bm-drop-caption {
+    font-size: 0.72rem;
+    color: var(--text-light);
+  }
+  #bm-url-parsed {
+    font-weight: 500;
+    font-size: 0.82rem;
+    color: var(--text);
+  }
+  .bm-add-hint {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-top: 0.1rem;
+  }
+  #bm-url-save {
+    align-self: flex-start;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: var(--backwoods);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-top: 0.3rem;
+  }
+  #bm-url-save:hover { opacity: 0.9; }
+  #bm-url-save:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  #bm-grid {
+    padding: 1rem 1.5rem 1.5rem;
+  }
+  .grid-section {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin: 1rem 0 0.6rem;
+  }
+  .grid-section:first-child { margin-top: 0; }
+  .grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.6rem;
+  }
+  .grid-more {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    padding: 1rem;
+  }
+  .bm-tile {
+    text-align: left;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 10px;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    overflow: hidden;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .bm-tile:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+  .bm-tile-swatch {
+    width: 100%;
+    aspect-ratio: 1.2;
+  }
+  .bm-tile-meta {
+    padding: 0.55rem 0.7rem 0.7rem;
+  }
+  .bm-tile-name {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .bm-tile-code {
+    font-size: 0.68rem;
+    color: var(--text-light);
+    margin-top: 0.1rem;
+  }
+  .bm-tile-unnamed .bm-tile-name {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .bm-tile-unnamed .bm-tile-code {
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  /* palette cards clickable hover */
+  .palette-card { cursor: default; }
+
+  @media (max-width: 600px) {
+    #editor-toolbar { top: auto; bottom: 1rem; right: 50%; transform: translateX(50%); }
+    #bm-picker { padding: 1rem; }
+  }
 </style>
 </head>
 <body>
+
+<!-- EDITOR TOOLBAR -->
+<div id="editor-toolbar" role="toolbar" aria-label="Design editor">
+  <button type="button" id="btn-edit" title="Toggle edit mode">Edit mode</button>
+  <div class="tool-sep"></div>
+  <button type="button" id="btn-export" title="Copy/export your edits as JSON">Export</button>
+  <button type="button" id="btn-reset" title="Reset to original">Reset</button>
+</div>
+
+<!-- COLOR PICKER MODAL -->
+<div id="bm-picker" role="dialog" aria-label="Benjamin Moore color picker" aria-modal="true">
+  <div class="bm-picker-dialog">
+    <div class="bm-picker-head">
+      <div class="bm-picker-head-top">
+        <div>
+          <div class="bm-kicker">Benjamin Moore library</div>
+          <h3>Pick a color</h3>
+        </div>
+        <button id="bm-close" aria-label="Close">&times;</button>
+      </div>
+      <input id="bm-search" type="text" placeholder="Search by name or code — e.g. 'hale navy' or 'HC-154'" />
+      <div id="bm-families" aria-label="Filter by color family"></div>
+      <div id="bm-count"></div>
+      <details id="bm-add-url">
+        <summary>+ Add a color from a Benjamin Moore link</summary>
+        <div class="bm-add-body">
+          <label class="bm-add-row">
+            <span>1. BM link</span>
+            <input type="url" id="bm-url-input" placeholder="https://www.benjaminmoore.com/en-ca/paint-colors/color/hc-154/hale-navy" />
+          </label>
+          <div class="bm-add-row bm-add-parsed">
+            <span>Code / Name</span>
+            <span id="bm-url-parsed">—</span>
+          </div>
+          <div class="bm-add-row">
+            <span>2. Screenshot</span>
+            <div id="bm-drop" class="bm-drop" tabindex="0">
+              <input type="file" id="bm-file" accept="image/*" hidden />
+              <div class="bm-drop-empty">
+                <strong>Drop a screenshot here</strong>
+                <span>…or paste (⌘V) · or <button type="button" id="bm-drop-browse">browse</button></span>
+                <small>Open the BM color page, screenshot the big color swatch, drop it here.</small>
+              </div>
+              <div class="bm-drop-preview" hidden>
+                <canvas id="bm-canvas"></canvas>
+                <div class="bm-drop-caption">Click anywhere on the swatch to sample</div>
+              </div>
+            </div>
+          </div>
+          <label class="bm-add-row">
+            <span>Hex color</span>
+            <span class="bm-hex-pair">
+              <input type="color" id="bm-url-color" value="#888888" />
+              <input type="text" id="bm-url-hex" value="#888888" maxlength="7" />
+              <span id="bm-hex-source" class="bm-hex-source">manual</span>
+            </span>
+          </label>
+          <label class="bm-add-row">
+            <span>Family</span>
+            <select id="bm-url-family"></select>
+          </label>
+          <p class="bm-add-hint">Paste the BM link, then drop/paste a screenshot of the color page. Click the swatch to sample the hex, then Add.</p>
+          <button type="button" id="bm-url-save">Add to library</button>
+        </div>
+      </details>
+    </div>
+    <div id="bm-grid"></div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -398,10 +976,10 @@
     </div>
 
     <div class="palette-card">
-      <a href="https://riflepaperco.com/products/safari-peel-stick-wallpaper-cream" target="_blank" style="text-decoration:none;color:inherit;">
+      <a href="https://riflepaperco.com/products/safari-peel-stick-wallpaper-linen?variant=45449939878082" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
       <div class="palette-swatch" style="background: url('images/powder-room-wall.png') center/cover; border: 1px solid rgba(0,0,0,0.06);"></div>
       <div class="name">Safari Wallpaper</div>
-      <div class="code">Rifle Paper Co. · Cream</div>
+      <div class="code">Rifle Paper Co. · Linen</div>
       </a>
       <div class="rooms">Powder Room Walls</div>
     </div>
@@ -630,13 +1208,13 @@
             <div class="chip-code">Keep as-is · Natural texture</div>
           </div>
         </div>
-        <a href="https://riflepaperco.com/products/safari-peel-stick-wallpaper-cream" target="_blank" style="text-decoration:none;color:inherit;">
+        <a href="https://riflepaperco.com/products/safari-peel-stick-wallpaper-linen?variant=45449939878082" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
         <div class="color-chip">
           <div class="chip-swatch" style="background: url('images/powder-room-wall.png') center/cover; border: 1px solid #ddd"></div>
           <div class="chip-info">
             <div class="chip-surface">Remaining Walls</div>
-            <div class="chip-name">Rifle Paper Co. Safari · Cream</div>
-            <div class="chip-code">Peel &amp; Stick · Cream colorway</div>
+            <div class="chip-name">Rifle Paper Co. Safari · Linen</div>
+            <div class="chip-code">Peel &amp; Stick · Linen colorway</div>
           </div>
         </div>
         </a>
@@ -651,7 +1229,7 @@
       </div>
       <div class="designer-note">
         <strong>Designer Note:</strong> The exposed white brick wall stays — it's already a beautiful natural
-        texture that grounds the room. The remaining walls get the Rifle Paper Co. Safari wallpaper in cream,
+        texture that grounds the room. The remaining walls get the Rifle Paper Co. Safari wallpaper in linen,
         which brings in whimsical animal illustrations with a warm, earthy palette. Peel-and-stick makes it
         commitment-free. Brass fixtures tie it to the rest of the home's hardware language.
       </div>
@@ -937,5 +1515,7 @@
   <p style="margin-top: 0.5rem; opacity: 0.5; font-size: 0.75rem;">Sample every color on the actual wall &middot; 2ft &times; 2ft patches &middot; Live with them for 48 hours in daylight</p>
 </footer>
 
+<script src="bm-colors.js?v=3"></script>
+<script src="editor.js?v=6"></script>
 </body>
 </html>
